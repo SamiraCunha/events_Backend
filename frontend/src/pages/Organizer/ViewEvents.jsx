@@ -1,4 +1,4 @@
-import React,{useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidenav from '../../componentes/compOrganizer/Sidenav';
 import Box from '@mui/material/Box';
 import NavBar from '../../componentes/compOrganizer/NavBar';
@@ -8,33 +8,42 @@ import TableHead from '@mui/material/TableHead';
 import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
+import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
- 
-
 export default function ViewEvents() {
-
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([]);
 
   const getEvents = async () => {
-    const response = await axios.get('http://localhost:8000/events/api/v2/event/')
-    setEvents(response.data)
-  }
+    const response = await axios.get('http://localhost:8000/events/api/v2/event/');
+    setEvents(response.data);
+  };
 
-  useEffect(()=>{
-    getEvents(); 
-  }, [])
+  const handleEdit = (eventId) => {
+    // Implemente a lógica de edição aqui, redirecione para a página de edição ou exiba um modal de edição.
+    console.log(`Editar evento com ID ${eventId}`);
+  };
+
+  const handleDelete = (eventId) => {
+    // Implemente a lógica de exclusão aqui, confirme com o usuário antes de excluir.
+    console.log(`Excluir evento com ID ${eventId}`);
+  };
+
+  useEffect(() => {
+    getEvents();
+  }, []);
+
   return (
-  <>
-    <NavBar />
-    <Box height={50} />
-    <Box sx={{ display: 'flex' }}>
-      <Sidenav />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <Typography variant="h4" gutterBottom>
-       Eventos
-      </Typography>
-        <Table>
+    <>
+      <NavBar />
+      <Box height={50} />
+      <Box sx={{ display: 'flex' }}>
+        <Sidenav />
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+          <Typography variant="h4" gutterBottom>
+            Eventos
+          </Typography>
+          <Table>
             <TableHead>
               <TableRow>
                 <TableCell sx={{ fontWeight: 'bold' }}>Titulo</TableCell>
@@ -42,26 +51,31 @@ export default function ViewEvents() {
                 <TableCell sx={{ fontWeight: 'bold' }}>Data de Inicio</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Data de Encerramento</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Local</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Moderador</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Orador</TableCell>
+                <TableCell sx={{ fontWeight: 'bold' }}>Ações</TableCell> {/* Nova coluna para ações */}
               </TableRow>
             </TableHead>
             <TableBody>
-              {events.map((eventt, index) => (
-                <TableRow key={index}>
+              {events.map((eventt) => (
+                <TableRow key={eventt.id}>
                   <TableCell>{eventt.title}</TableCell>
                   <TableCell>{eventt.description}</TableCell>
                   <TableCell>{eventt.start_date}</TableCell>
                   <TableCell>{eventt.end_date}</TableCell>
                   <TableCell>{eventt.location}</TableCell>
-                  <TableCell>{eventt.moderator}</TableCell>
-                  <TableCell>{eventt.speakers}</TableCell>
+                  <TableCell>
+                    <Button variant="outlined" onClick={() => handleEdit(eventt.id)}>
+                      Editar
+                    </Button>
+                    <Button variant="outlined" onClick={() => handleDelete(eventt.id)}>
+                      Excluir
+                    </Button>
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
           </Table>
-     </Box> 
-  </Box>
-  </>
-  )
+        </Box>
+      </Box>
+    </>
+  );
 }

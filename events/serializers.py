@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Event, Participant, Registration,Organizer,Speaker
+from .models import Event, Participant, Registration,Organizer
 
 # tranforma conteudos que estao em model para o JSON
 
@@ -24,7 +24,3 @@ class OrganizerSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class SpeakerSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Speaker
-        fields = '__all__'

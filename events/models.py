@@ -4,8 +4,6 @@ from django.contrib.auth.models import User
 class Event(models.Model):
     title = models.CharField(max_length=200)
     description = models.TextField()
-    moderator = models.CharField(max_length=200)
-    speakers = models.ManyToManyField('Speaker', related_name='events') 
     start_date = models.DateTimeField()
     end_date = models.DateTimeField()
     location = models.CharField(max_length=255)
@@ -19,14 +17,6 @@ class Organizer(models.Model):
 
     def __str__(self):
         return self.user.username  
-
-class Speaker(models.Model):
-    name = models.CharField(max_length=100)
-    bio = models.TextField()
-
-    def __str__(self):
-        return self.name
-
     
 class Participant(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

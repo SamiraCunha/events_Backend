@@ -10,7 +10,7 @@ router.register(r"event",views.EventView,"events")
 router.register(r"organizer",views.OrganizerView,"events")
 router.register(r"participant",views.ParticipantView,"events")
 router.register(r"registration",views.RegistrationView,"events")
-router.register(r"speakers",views.SpeakerView,"events")
+
 
 urlpatterns = [
     path('api/v2/', include(router.urls)),
