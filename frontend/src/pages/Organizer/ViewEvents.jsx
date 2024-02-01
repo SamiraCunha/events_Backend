@@ -32,7 +32,7 @@ export default function ViewEvents() {
     if (confirmDelete) {
       try {
         // Send a request to delete the event
-        await axios.delete(`http://localhost:8000/events/api/v2/event/${eventId}`);
+        await axios.delete('http://localhost:8000/events/api/v2/event/${eventId}');
         // Update the events list after deletion
         getEvents();
         console.log(`Event with ID ${eventId} deleted successfully`);
