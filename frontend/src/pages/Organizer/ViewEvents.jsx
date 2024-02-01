@@ -24,9 +24,22 @@ export default function ViewEvents() {
     console.log(`Editar evento com ID ${eventId}`);
   };
 
-  const handleDelete = (eventId) => {
-    // Implemente a lógica de exclusão aqui, confirme com o usuário antes de excluir.
-    console.log(`Excluir evento com ID ${eventId}`);
+  const handleDelete = async (eventId) => {
+    // Implement logic for deletion here
+    // You might want to show a confirmation dialog before deleting
+    const confirmDelete = window.confirm('Are you sure you want to delete this event?');
+    
+    if (confirmDelete) {
+      try {
+        // Send a request to delete the event
+        await axios.delete(`http://localhost:8000/events/api/v2/event/${eventId}`);
+        // Update the events list after deletion
+        getEvents();
+        console.log(`Event with ID ${eventId} deleted successfully`);
+      } catch (error) {
+        console.error(`Error deleting event with ID ${eventId}:`, error);
+      }
+    }
   };
 
   useEffect(() => {

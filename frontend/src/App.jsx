@@ -11,6 +11,7 @@ import ViewEventsP from './pages/Participants/ViewEventsP';
 import RegistEvents from './pages/Participants/RegistEvents';
 import Organizer from './pages/Organizer/Organizer';
 import Home from "./pages/Home";
+import EditEvents from './pages/Organizer/EditEvents';
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
         <Route path='/organizer' exact element={<Organizer />}></Route>
         <Route path='/add-events' exact element={<AddEvents />}></Route>
         <Route path='/view-events' exact element={<ViewEvents />}></Route>
+        <Route path='/edit-events' exact element={<EditEvents />}></Route>
         <Route path='/sign-in' exact element={<Signin />}></Route>
         <Route path='/sign-up' exact element={<SignUp />}></Route>
         <Route path='/user' exact element={<User />}></Route>
