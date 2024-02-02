@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import Link from '@mui/material/Link';
+import { Link } from 'react-router-dom';
 import SidenavParticipants from '../../componentes/compParticipants/SidenavParticipants';
 import Box from '@mui/material/Box';
 import NavBar from '../../componentes/compParticipants/NavBar';
@@ -10,6 +10,7 @@ import TableBody from '@mui/material/TableBody';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Typography from '@mui/material/Typography';
+
 
  
 
@@ -47,7 +48,7 @@ export default function ViewEventsP() {
               {events.map((eventt, index) => (
                 <TableRow key={index}>
                   <TableCell>
-                  <Link href="/event-detail">{eventt.title}</Link>
+                  <Link to={`/event-detail/${eventt.id}`}>{eventt.title}</Link>
                   </TableCell>
                   <TableCell>{eventt.description}</TableCell>
                   <TableCell>{eventt.start_date}</TableCell>
