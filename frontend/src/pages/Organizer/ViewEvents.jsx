@@ -10,6 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 export default function ViewEvents() {
   const [events, setEvents] = useState([]);
@@ -19,21 +20,16 @@ export default function ViewEvents() {
     setEvents(response.data);
   };
 
-  const handleEdit = (eventId) => {
-    // Implemente a lógica de edição aqui, redirecione para a página de edição ou exiba um modal de edição.
-    console.log(`Editar evento com ID ${eventId}`);
-  };
 
   const handleDelete = async (eventId) => {
-    // Implement logic for deletion here
-    // You might want to show a confirmation dialog before deleting
+    
     const confirmDelete = window.confirm('Are you sure you want to delete this event?');
     
     if (confirmDelete) {
       try {
-        // Send a request to delete the event
+        
         await axios.delete('http://localhost:8000/events/api/v2/event/${eventId}');
-        // Update the events list after deletion
+        
         getEvents();
         console.log(`Event with ID ${eventId} deleted successfully`);
       } catch (error) {
@@ -53,9 +49,7 @@ export default function ViewEvents() {
       <Box sx={{ display: 'flex' }}>
         <Sidenav />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-          <Typography variant="h4" gutterBottom>
-            Eventos
-          </Typography>
+          <Typography variant="h4" gutterBottom> Eventos </Typography>
           <Table>
             <TableHead>
               <TableRow>
@@ -64,7 +58,7 @@ export default function ViewEvents() {
                 <TableCell sx={{ fontWeight: 'bold' }}>Data de Inicio</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Data de Encerramento</TableCell>
                 <TableCell sx={{ fontWeight: 'bold' }}>Local</TableCell>
-                <TableCell sx={{ fontWeight: 'bold' }}>Ações</TableCell> {/* Nova coluna para ações */}
+                <TableCell sx={{ fontWeight: 'bold' }}>Ações</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -76,15 +70,13 @@ export default function ViewEvents() {
                   <TableCell>{eventt.end_date}</TableCell>
                   <TableCell>{eventt.location}</TableCell>
                   <TableCell>
-                    <Button variant="outlined" onClick={() => handleEdit(eventt.id)}>
-                      Editar
-                    </Button>
+                    <Link to ={`/update/${eventt.id}`}> Editar </Link>
                     <Button variant="outlined" onClick={() => handleDelete(eventt.id)}>
                       Excluir
                     </Button>
                   </TableCell>
-                </TableRow>
-              ))}
+                </TableRow> 
+                ))}
             </TableBody>
           </Table>
         </Box>

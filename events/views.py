@@ -9,6 +9,13 @@ from .models import Event, Organizer, Participant, Registration
 class EventView(viewsets.ModelViewSet):
     serializer_class = EventSerializer
     queryset = Event.objects.all()
+    
+    @api_view(['GET'])
+    def showSingleEvent(request, pk):
+
+     event = Event.objects.get(id=pk)
+     serilizer = EventSerializer(event, many=False)
+     return Response(serilizer.data)
 
 
 class OrganizerView(viewsets.ModelViewSet):

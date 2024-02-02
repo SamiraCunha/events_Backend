@@ -22,12 +22,12 @@ export default function App() {
         <Route path='/organizer' exact element={<Organizer />}></Route>
         <Route path='/add-events' exact element={<AddEvents />}></Route>
         <Route path='/view-events' exact element={<ViewEvents />}></Route>
-        <Route path='/edit-events' exact element={<EditEvents />}></Route>
+        <Route path='/update/:id' exact element={<EditEvents />}></Route>
         <Route path='/sign-in' exact element={<Signin />}></Route>
         <Route path='/sign-up' exact element={<SignUp />}></Route>
         <Route path='/user' exact element={<User />}></Route>
         <Route path='/participants' exact element={<Participants />}></Route>
-        <Route path="/event-detail" exact element={<EventDetail/>}></Route>
+        <Route path='/event-detail/' exact element={<EventDetail />}></Route>
         <Route path='/view-eventsp' exact element={<ViewEventsP />}></Route>
         <Route path='/registered-events' exact element={<RegistEvents />}></Route>
       </Routes>

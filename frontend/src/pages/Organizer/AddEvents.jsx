@@ -8,6 +8,7 @@ import axios from 'axios';
 
 
 
+
 export default function AddEvents() {
 
   const [formData, setFormData] = useState({
@@ -24,6 +25,7 @@ export default function AddEvents() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
